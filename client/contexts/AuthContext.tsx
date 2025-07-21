@@ -16,26 +16,32 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Generate a Roblox-style avatar URL based on username
+const generateRobloxAvatarUrl = (username: string): string => {
+  // Generate a consistent user ID from username hash
+  const userId = Math.abs(username.split('').reduce((a, b) => {
+    a = ((a << 5) - a) + b.charCodeAt(0);
+    return a & a;
+  }, 0)) % 10000000 + 1; // Generate ID between 1 and 10,000,000
+
+  // Use Roblox's actual avatar API endpoint format
+  return `https://www.roblox.com/headshot-thumbnail/image?userId=${userId}&width=420&height=420&format=png`;
+};
+
 // Mock function to validate Roblox username
 const validateRobloxUsername = async (username: string): Promise<{ isValid: boolean; avatarUrl?: string }> => {
   // Simulate API call delay
   await new Promise(resolve => setTimeout(resolve, 1000));
-  
+
   // Mock validation - in real app, this would call Roblox API
   const validUsernames = ['testuser', 'player123', 'robloxgamer', 'buildmaster', 'scriptkid'];
   const isValid = validUsernames.includes(username.toLowerCase()) || username.length >= 3;
-  
-  if (isValid) {
-    // Generate a consistent avatar URL based on username - in real app, this would come from Roblox API
-    const userId = Math.abs(username.split('').reduce((a, b) => {
-      a = ((a << 5) - a) + b.charCodeAt(0);
-      return a & a;
-    }, 0)) % 100000 + 1000000; // Generate consistent userId from username
 
-    const avatarUrl = `https://tr.rbxcdn.com/180DAY-AvatarHeadshot-${userId}-Png/420/420/AvatarHeadshot/Png/noFilter`;
+  if (isValid) {
+    const avatarUrl = generateRobloxAvatarUrl(username);
     return { isValid: true, avatarUrl };
   }
-  
+
   return { isValid: false };
 };
 
