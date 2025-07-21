@@ -41,6 +41,14 @@
 
     --radius: 0.5rem;
 
+    /* Roblox Brand Colors */
+    --brand-blue: 230 65% 60%;
+    --brand-blue-light: 230 55% 70%;
+    --brand-blue-dark: 230 75% 50%;
+    --brand-blue-50: 230 45% 95%;
+    --brand-blue-100: 230 50% 85%;
+    --brand-blue-200: 230 55% 75%;
+
     --sidebar-background: 0 0% 98%;
 
     --sidebar-foreground: 240 5.3% 26.1%;
