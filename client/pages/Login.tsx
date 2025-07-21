@@ -158,15 +158,24 @@ export default function Login() {
               {pendingUserData && (
                 <div className="space-y-4">
                   <div className="flex justify-center">
-                    <img
-                      src={pendingUserData.avatarUrl}
-                      alt={`${pendingUserData.username}'s avatar`}
-                      className="w-32 h-32 rounded-full border-4 border-brand-blue shadow-lg"
-                      onError={(e) => {
-                        // Fallback to default Roblox avatar if image fails to load
-                        (e.target as HTMLImageElement).src = "https://www.roblox.com/headshot-thumbnail/image?userId=1&width=420&height=420&format=png";
-                      }}
-                    />
+                    <div className="relative">
+                      <Avatar className="w-32 h-32 border-4 border-brand-blue shadow-lg">
+                        <AvatarImage
+                          src={pendingUserData.avatarUrl}
+                          alt={`${pendingUserData.username}'s avatar`}
+                          onLoad={() => setAvatarLoading(false)}
+                          onError={() => setAvatarLoading(false)}
+                        />
+                        <AvatarFallback className="w-32 h-32 bg-brand-blue text-white text-4xl font-bold">
+                          {pendingUserData.username.charAt(0).toUpperCase()}
+                        </AvatarFallback>
+                      </Avatar>
+                      {avatarLoading && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-brand-blue-50 rounded-full">
+                          <div className="w-8 h-8 border-2 border-brand-blue border-t-transparent rounded-full animate-spin"></div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                   <div className="bg-brand-blue-50 rounded-lg p-4">
                     <p className="font-semibold text-gray-800">
