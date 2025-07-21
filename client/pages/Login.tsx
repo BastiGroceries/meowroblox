@@ -33,9 +33,9 @@ export default function Login() {
       const userId = Math.abs(username.trim().split('').reduce((a, b) => {
         a = ((a << 5) - a) + b.charCodeAt(0);
         return a & a;
-      }, 0)) % 100000 + 1000000;
+      }, 0)) % 10000000 + 1;
 
-      const avatarUrl = `https://tr.rbxcdn.com/180DAY-AvatarHeadshot-${userId}-Png/420/420/AvatarHeadshot/Png/noFilter`;
+      const avatarUrl = `https://www.roblox.com/headshot-thumbnail/image?userId=${userId}&width=420&height=420&format=png`;
       setPendingUserData({ username: username.trim(), avatarUrl });
       setShowVerification(true);
     } else {
