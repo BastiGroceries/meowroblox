@@ -96,7 +96,7 @@ export function Header() {
                       <span>My Orders</span>
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={logout} className="flex items-center space-x-2 text-red-600">
+                  <DropdownMenuItem onClick={handleLogoutClick} className="flex items-center space-x-2 text-red-600">
                     <span>🚪</span>
                     <span>Logout</span>
                   </DropdownMenuItem>
