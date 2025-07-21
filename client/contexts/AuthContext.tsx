@@ -26,8 +26,13 @@ const validateRobloxUsername = async (username: string): Promise<{ isValid: bool
   const isValid = validUsernames.includes(username.toLowerCase()) || username.length >= 3;
   
   if (isValid) {
-    // Mock avatar URL - in real app, this would come from Roblox API
-    const avatarUrl = `https://www.roblox.com/headshot-thumbnail/image?userId=${Math.floor(Math.random() * 1000000)}&width=420&height=420&format=png`;
+    // Generate a consistent avatar URL based on username - in real app, this would come from Roblox API
+    const userId = Math.abs(username.split('').reduce((a, b) => {
+      a = ((a << 5) - a) + b.charCodeAt(0);
+      return a & a;
+    }, 0)) % 100000 + 1000000; // Generate consistent userId from username
+
+    const avatarUrl = `https://tr.rbxcdn.com/180DAY-AvatarHeadshot-${userId}-Png/420/420/AvatarHeadshot/Png/noFilter`;
     return { isValid: true, avatarUrl };
   }
   
