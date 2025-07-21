@@ -161,8 +161,8 @@ export default function Login() {
                       alt={`${pendingUserData.username}'s avatar`}
                       className="w-32 h-32 rounded-full border-4 border-brand-blue shadow-lg"
                       onError={(e) => {
-                        // Fallback to default Roblox-style avatar if image fails to load
-                        (e.target as HTMLImageElement).src = "https://tr.rbxcdn.com/180DAY-AvatarHeadshot-1-Png/420/420/AvatarHeadshot/Png/noFilter";
+                        // Fallback to default Roblox avatar if image fails to load
+                        (e.target as HTMLImageElement).src = "https://www.roblox.com/headshot-thumbnail/image?userId=1&width=420&height=420&format=png";
                       }}
                     />
                   </div>
