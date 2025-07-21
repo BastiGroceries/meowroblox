@@ -8,12 +8,14 @@ import { Input } from "../components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../components/ui/dialog";
 import { Alert, AlertDescription } from "../components/ui/alert";
+import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [showVerification, setShowVerification] = useState(false);
   const [showError, setShowError] = useState(false);
   const [pendingUserData, setPendingUserData] = useState<{ username: string; avatarUrl: string } | null>(null);
+  const [avatarLoading, setAvatarLoading] = useState(true);
   const { login, verifyUser, isLoading } = useAuth();
   const navigate = useNavigate();
 
