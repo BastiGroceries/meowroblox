@@ -29,8 +29,13 @@ export default function Login() {
     const success = await login(username.trim());
     
     if (success) {
-      // Generate mock avatar URL for verification
-      const avatarUrl = `https://tr.rbxcdn.com/30DAY-AvatarHeadshot-${Math.floor(Math.random() * 1000000)}-Png/420/420/AvatarHeadshot/Png/noFilter`;
+      // Generate consistent avatar URL based on username - same logic as AuthContext
+      const userId = Math.abs(username.trim().split('').reduce((a, b) => {
+        a = ((a << 5) - a) + b.charCodeAt(0);
+        return a & a;
+      }, 0)) % 100000 + 1000000;
+
+      const avatarUrl = `https://tr.rbxcdn.com/180DAY-AvatarHeadshot-${userId}-Png/420/420/AvatarHeadshot/Png/noFilter`;
       setPendingUserData({ username: username.trim(), avatarUrl });
       setShowVerification(true);
     } else {
