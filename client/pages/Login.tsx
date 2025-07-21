@@ -31,13 +31,14 @@ export default function Login() {
     const success = await login(username.trim());
     
     if (success) {
-      // Generate consistent avatar URL based on username - same logic as AuthContext
-      const userId = Math.abs(username.trim().split('').reduce((a, b) => {
+      // Generate consistent avatar URL based on username - using a reliable avatar service
+      const hash = Math.abs(username.trim().split('').reduce((a, b) => {
         a = ((a << 5) - a) + b.charCodeAt(0);
         return a & a;
-      }, 0)) % 10000000 + 1;
+      }, 0));
 
-      const avatarUrl = `https://www.roblox.com/headshot-thumbnail/image?userId=${userId}&width=420&height=420&format=png`;
+      // Use DiceBear avatars which are reliable and look good
+      const avatarUrl = `https://api.dicebear.com/7.x/avataaars/png?seed=${username.trim()}&backgroundColor=4f46e5&size=420`;
       setPendingUserData({ username: username.trim(), avatarUrl });
       setAvatarLoading(true);
       setShowVerification(true);
