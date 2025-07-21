@@ -32,7 +32,7 @@ const validateRobloxUsername = async (username: string): Promise<{ isValid: bool
   const isValid = validUsernames.includes(username.toLowerCase()) || username.length >= 3;
 
   if (isValid) {
-    const avatarUrl = generateRobloxAvatarUrl(username);
+    const avatarUrl = generateAvatarUrl(username);
     return { isValid: true, avatarUrl };
   }
 
