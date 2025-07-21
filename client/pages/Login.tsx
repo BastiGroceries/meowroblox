@@ -39,6 +39,7 @@ export default function Login() {
 
       const avatarUrl = `https://www.roblox.com/headshot-thumbnail/image?userId=${userId}&width=420&height=420&format=png`;
       setPendingUserData({ username: username.trim(), avatarUrl });
+      setAvatarLoading(true);
       setShowVerification(true);
     } else {
       setShowError(true);
