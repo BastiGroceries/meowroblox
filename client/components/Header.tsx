@@ -3,8 +3,19 @@ import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { useAuth } from "../contexts/AuthContext";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "./ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "./ui/dialog";
 
 export function Header() {
   const { user, logout } = useAuth();
@@ -40,26 +51,26 @@ export function Header() {
 
           {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link 
-              to="/items" 
+            <Link
+              to="/items"
               className="text-gray-700 hover:text-brand-blue transition-colors font-medium"
             >
               Items
             </Link>
-            <Link 
-              to="/games" 
+            <Link
+              to="/games"
               className="text-gray-700 hover:text-brand-blue transition-colors font-medium"
             >
               Games
             </Link>
-            <Link 
-              to="/templates" 
+            <Link
+              to="/templates"
               className="text-gray-700 hover:text-brand-blue transition-colors font-medium"
             >
               Templates
             </Link>
-            <Link 
-              to="/contact" 
+            <Link
+              to="/contact"
               className="text-gray-700 hover:text-brand-blue transition-colors font-medium"
             >
               Contact
@@ -71,7 +82,10 @@ export function Header() {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="flex items-center space-x-3 px-3 py-2 hover:bg-brand-blue-50 rounded-lg transition-colors">
+                  <Button
+                    variant="ghost"
+                    className="flex items-center space-x-3 px-3 py-2 hover:bg-brand-blue-50 rounded-lg transition-colors"
+                  >
                     <Avatar className="w-8 h-8">
                       <AvatarImage src={user.avatarUrl} alt={user.username} />
                       <AvatarFallback className="bg-brand-blue text-white text-sm">
@@ -96,7 +110,10 @@ export function Header() {
                       <span>My Orders</span>
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={handleLogoutClick} className="flex items-center space-x-2 text-red-600">
+                  <DropdownMenuItem
+                    onClick={handleLogoutClick}
+                    className="flex items-center space-x-2 text-red-600"
+                  >
                     <span>🚪</span>
                     <span>Logout</span>
                   </DropdownMenuItem>
@@ -112,9 +129,7 @@ export function Header() {
                     Login
                   </Button>
                 </Link>
-                <Button
-                  className="bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-all duration-200 hover:shadow-lg"
-                >
+                <Button className="bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-all duration-200 hover:shadow-lg">
                   Shop Now
                 </Button>
               </div>
@@ -124,8 +139,18 @@ export function Header() {
           {/* Mobile menu button */}
           <div className="md:hidden">
             <Button variant="ghost" size="sm">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             </Button>
           </div>

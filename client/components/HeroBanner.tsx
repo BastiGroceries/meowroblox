@@ -15,20 +15,20 @@ export function HeroBanner() {
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-lg">
-                Discover amazing Roblox items, games, and templates. 
-                Everything you need to enhance your Roblox experience in one place.
+                Discover amazing Roblox items, games, and templates. Everything
+                you need to enhance your Roblox experience in one place.
               </p>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
+              <Button
                 size="lg"
                 className="bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1"
               >
                 Start Shopping
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="lg"
                 className="border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white font-semibold px-8 py-4 rounded-xl transition-all duration-200"
               >
@@ -46,18 +46,24 @@ export function HeroBanner() {
                     <div className="w-16 h-16 bg-brand-blue rounded-full flex items-center justify-center mx-auto mb-4">
                       <span className="text-2xl font-bold text-white">🎮</span>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-800">Premium Items</h3>
+                    <h3 className="text-xl font-semibold text-gray-800">
+                      Premium Items
+                    </h3>
                     <p className="text-gray-600">Exclusive Roblox content</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-brand-blue-50 p-4 rounded-lg text-center">
                     <div className="text-2xl mb-2">⚡</div>
-                    <div className="text-sm font-medium text-gray-700">Instant Access</div>
+                    <div className="text-sm font-medium text-gray-700">
+                      Instant Access
+                    </div>
                   </div>
                   <div className="bg-brand-blue-50 p-4 rounded-lg text-center">
                     <div className="text-2xl mb-2">🔒</div>
-                    <div className="text-sm font-medium text-gray-700">Secure Purchase</div>
+                    <div className="text-sm font-medium text-gray-700">
+                      Secure Purchase
+                    </div>
                   </div>
                 </div>
               </div>

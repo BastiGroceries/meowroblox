@@ -5,8 +5,18 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../components/ui/dialog";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "../components/ui/dialog";
 import { Alert, AlertDescription } from "../components/ui/alert";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 
@@ -14,7 +24,10 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [showVerification, setShowVerification] = useState(false);
   const [showError, setShowError] = useState(false);
-  const [pendingUserData, setPendingUserData] = useState<{ username: string; avatarUrl: string } | null>(null);
+  const [pendingUserData, setPendingUserData] = useState<{
+    username: string;
+    avatarUrl: string;
+  } | null>(null);
   const [avatarLoading, setAvatarLoading] = useState(true);
   const { login, verifyUser, isLoading } = useAuth();
   const navigate = useNavigate();
@@ -22,20 +35,25 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setShowError(false);
-    
+
     if (!username.trim()) {
       setShowError(true);
       return;
     }
 
     const success = await login(username.trim());
-    
+
     if (success) {
       // Generate consistent avatar URL based on username - using a reliable avatar service
-      const hash = Math.abs(username.trim().split('').reduce((a, b) => {
-        a = ((a << 5) - a) + b.charCodeAt(0);
-        return a & a;
-      }, 0));
+      const hash = Math.abs(
+        username
+          .trim()
+          .split("")
+          .reduce((a, b) => {
+            a = (a << 5) - a + b.charCodeAt(0);
+            return a & a;
+          }, 0),
+      );
 
       // Use DiceBear avatars which are reliable and look good
       const avatarUrl = `https://api.dicebear.com/7.x/avataaars/png?seed=${username.trim()}&backgroundColor=4f46e5&size=420`;
@@ -75,11 +93,14 @@ export default function Login() {
                 Enter your Roblox username to continue
               </p>
             </CardHeader>
-            
+
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="username"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Roblox Username
                   </label>
                   <Input
@@ -97,12 +118,13 @@ export default function Login() {
                 {showError && (
                   <Alert className="border-red-200 bg-red-50">
                     <AlertDescription className="text-red-700">
-                      Incorrect username. Please check your Roblox username and try again.
+                      Incorrect username. Please check your Roblox username and
+                      try again.
                     </AlertDescription>
                   </Alert>
                 )}
 
-                <Button 
+                <Button
                   type="submit"
                   disabled={isLoading}
                   className="w-full bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -121,17 +143,17 @@ export default function Login() {
               <div className="mt-6 text-center">
                 <p className="text-sm text-gray-600">
                   Don't have a Roblox account?{" "}
-                  <a 
-                    href="https://www.roblox.com/signup" 
-                    target="_blank" 
+                  <a
+                    href="https://www.roblox.com/signup"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-brand-blue font-medium hover:underline"
                   >
                     Sign up here
                   </a>
                 </p>
-                <Link 
-                  to="/" 
+                <Link
+                  to="/"
                   className="text-sm text-gray-500 hover:text-brand-blue transition-colors inline-block mt-2"
                 >
                   ← Back to homepage
@@ -150,13 +172,11 @@ export default function Login() {
               Verify Your Account
             </DialogTitle>
           </DialogHeader>
-          
+
           <div className="space-y-6 py-4">
             <div className="text-center">
-              <p className="text-gray-600 mb-4">
-                Is this your Roblox avatar?
-              </p>
-              
+              <p className="text-gray-600 mb-4">Is this your Roblox avatar?</p>
+
               {pendingUserData && (
                 <div className="space-y-4">
                   <div className="flex justify-center">
@@ -187,7 +207,7 @@ export default function Login() {
                 </div>
               )}
             </div>
-            
+
             <div className="flex space-x-3">
               <Button
                 onClick={() => handleVerification(false)}

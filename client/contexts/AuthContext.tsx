@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 
 interface User {
   username: string;
@@ -23,13 +29,22 @@ const generateAvatarUrl = (username: string): string => {
 };
 
 // Mock function to validate Roblox username
-const validateRobloxUsername = async (username: string): Promise<{ isValid: boolean; avatarUrl?: string }> => {
+const validateRobloxUsername = async (
+  username: string,
+): Promise<{ isValid: boolean; avatarUrl?: string }> => {
   // Simulate API call delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   // Mock validation - in real app, this would call Roblox API
-  const validUsernames = ['testuser', 'player123', 'robloxgamer', 'buildmaster', 'scriptkid'];
-  const isValid = validUsernames.includes(username.toLowerCase()) || username.length >= 3;
+  const validUsernames = [
+    "testuser",
+    "player123",
+    "robloxgamer",
+    "buildmaster",
+    "scriptkid",
+  ];
+  const isValid =
+    validUsernames.includes(username.toLowerCase()) || username.length >= 3;
 
   if (isValid) {
     const avatarUrl = generateAvatarUrl(username);
@@ -42,11 +57,14 @@ const validateRobloxUsername = async (username: string): Promise<{ isValid: bool
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [pendingUser, setPendingUser] = useState<{ username: string; avatarUrl: string } | null>(null);
+  const [pendingUser, setPendingUser] = useState<{
+    username: string;
+    avatarUrl: string;
+  } | null>(null);
 
   // Load user from localStorage on app start
   useEffect(() => {
-    const savedUser = localStorage.getItem('roblox_user');
+    const savedUser = localStorage.getItem("roblox_user");
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
@@ -56,7 +74,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(true);
     try {
       const result = await validateRobloxUsername(username);
-      
+
       if (result.isValid && result.avatarUrl) {
         setPendingUser({ username, avatarUrl: result.avatarUrl });
         return true;
@@ -64,7 +82,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return false;
       }
     } catch (error) {
-      console.error('Login error:', error);
+      console.error("Login error:", error);
       return false;
     } finally {
       setIsLoading(false);
@@ -76,10 +94,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const newUser: User = {
         username: pendingUser.username,
         avatarUrl: pendingUser.avatarUrl,
-        verified: true
+        verified: true,
       };
       setUser(newUser);
-      localStorage.setItem('roblox_user', JSON.stringify(newUser));
+      localStorage.setItem("roblox_user", JSON.stringify(newUser));
     }
     setPendingUser(null);
   };
@@ -87,7 +105,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     setUser(null);
     setPendingUser(null);
-    localStorage.removeItem('roblox_user');
+    localStorage.removeItem("roblox_user");
   };
 
   const value: AuthContextType = {
@@ -95,20 +113,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     login,
     verifyUser,
     logout,
-    isLoading
+    isLoading,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 }
