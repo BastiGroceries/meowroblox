@@ -131,6 +131,37 @@ export function Header() {
           </div>
         </div>
       </div>
+
+      {/* Logout Confirmation Dialog */}
+      <Dialog open={showLogoutConfirm} onOpenChange={setShowLogoutConfirm}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center space-x-2">
+              <span>🚪</span>
+              <span>Confirm Logout</span>
+            </DialogTitle>
+            <DialogDescription>
+              Are you sure you want to logout from your account?
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="flex space-x-3 mt-6">
+            <Button
+              onClick={handleLogoutCancel}
+              variant="outline"
+              className="flex-1"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleLogoutConfirm}
+              className="flex-1 bg-red-600 hover:bg-red-700 text-white"
+            >
+              Logout
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </header>
   );
 }
