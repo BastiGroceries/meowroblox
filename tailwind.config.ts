@@ -27,6 +27,14 @@ export default {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
+        brand: {
+          blue: "hsl(var(--brand-blue))",
+          "blue-light": "hsl(var(--brand-blue-light))",
+          "blue-dark": "hsl(var(--brand-blue-dark))",
+          "blue-50": "hsl(var(--brand-blue-50))",
+          "blue-100": "hsl(var(--brand-blue-100))",
+          "blue-200": "hsl(var(--brand-blue-200))",
+        },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
