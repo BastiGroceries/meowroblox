@@ -123,13 +123,15 @@ export function ItemsShowcase() {
 
         {/* View All Button */}
         <div className="text-center">
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white font-semibold px-8 py-3 rounded-xl transition-all duration-200"
-          >
-            View All Items
-          </Button>
+          <Link to="/products?c=all&p=all">
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white font-semibold px-8 py-3 rounded-xl transition-all duration-200"
+            >
+              View All Items
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
