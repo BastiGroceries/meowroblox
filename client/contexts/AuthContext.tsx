@@ -16,16 +16,10 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Generate a Roblox-style avatar URL based on username
-const generateRobloxAvatarUrl = (username: string): string => {
-  // Generate a consistent user ID from username hash
-  const userId = Math.abs(username.split('').reduce((a, b) => {
-    a = ((a << 5) - a) + b.charCodeAt(0);
-    return a & a;
-  }, 0)) % 10000000 + 1; // Generate ID between 1 and 10,000,000
-
-  // Use Roblox's actual avatar API endpoint format
-  return `https://www.roblox.com/headshot-thumbnail/image?userId=${userId}&width=420&height=420&format=png`;
+// Generate a consistent avatar URL based on username
+const generateAvatarUrl = (username: string): string => {
+  // Use DiceBear avatars which are reliable and consistent
+  return `https://api.dicebear.com/7.x/avataaars/png?seed=${username}&backgroundColor=4f46e5&size=420`;
 };
 
 // Mock function to validate Roblox username
