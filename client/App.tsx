@@ -11,7 +11,10 @@ import Items from "./pages/Items";
 import Games from "./pages/Games";
 import Templates from "./pages/Templates";
 import Contact from "./pages/Contact";
+import Login from "./pages/Login";
+import Products from "./pages/Products";
 import NotFound from "./pages/NotFound";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const queryClient = new QueryClient();
 
