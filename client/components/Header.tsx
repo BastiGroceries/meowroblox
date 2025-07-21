@@ -50,13 +50,59 @@ export function Header() {
             </Link>
           </nav>
 
-          {/* CTA Button */}
+          {/* CTA Button / User Menu */}
           <div className="flex items-center space-x-4">
-            <Button 
-              className="bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-all duration-200 hover:shadow-lg"
-            >
-              Shop Now
-            </Button>
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="flex items-center space-x-3 px-3 py-2 hover:bg-brand-blue-50 rounded-lg transition-colors">
+                    <Avatar className="w-8 h-8">
+                      <AvatarImage src={user.avatarUrl} alt={user.username} />
+                      <AvatarFallback className="bg-brand-blue text-white text-sm">
+                        {user.username.charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="text-sm font-medium text-gray-700 hidden sm:block">
+                      {user.username}
+                    </span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile" className="flex items-center space-x-2">
+                      <span>👤</span>
+                      <span>Profile</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/orders" className="flex items-center space-x-2">
+                      <span>📦</span>
+                      <span>My Orders</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={logout} className="flex items-center space-x-2 text-red-600">
+                    <span>🚪</span>
+                    <span>Logout</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <div className="flex items-center space-x-3">
+                <Link to="/login">
+                  <Button
+                    variant="outline"
+                    className="border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white font-semibold px-4 py-2 rounded-lg transition-all duration-200"
+                  >
+                    Login
+                  </Button>
+                </Link>
+                <Button
+                  className="bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold px-6 py-2 rounded-lg shadow-md transition-all duration-200 hover:shadow-lg"
+                >
+                  Shop Now
+                </Button>
+              </div>
+            )}
           </div>
 
           {/* Mobile menu button */}
